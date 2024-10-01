@@ -32,3 +32,21 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+img {
+    object-fit: contain;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.card-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    height: 200px;
+}
