@@ -1,19 +1,39 @@
 {% extends 'myapp/layout.html' %}
 
+{% load static %}
+
 {% block title %}
     Info
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'myapp/css/info_styles.css' %}">
 {% endblock %}
 
 {% block body %}
 
 {% include 'myapp/header.html' %}
 
+<h1 class="page-title">GitHub Profile</h1>
+
 <main>
-    <h4>Info Page</h4>
-    <p>It's info !</p>
+    {% if github_data %}
+        <div class="profile-image">
+            <img src="{{ github_data.avatar_url }}" alt="{{ github_data.login }}">
+        </div>
+        <div class="profile-info">
+            <h2><a href="{{ github_data.html_url }}" target="_blank">{{ github_data.name }}</a></h2>
+            <p>{{ github_data.bio }}</p>
+            <p>Followers: {{ github_data.followers }}</p>
+            <p>Following: {{ github_data.following }}</p>
+            <p>Repositories: {{ github_data.public_repos }}</p>
+            <p>Company: {{ github_data.company }}</p>
+            <p class="date">Created At: {{ github_data.created_at|date:"d F Y" }}</p>
+            <p class="date">Updated At: {{ github_data.updated_at|date:"d F Y" }}</p>
+        </div>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
 </main>
-<footer>
-    <p>&copy; 2024 @Sb_14</p>
-</footer>
 
 {% endblock %}
