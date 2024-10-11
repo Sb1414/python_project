@@ -1,0 +1,19 @@
+{% extends 'myapp/layout.html' %}
+{% load static %}
+{% block title %}
+Delete Event
+{% endblock %}
+
+{% block body %}
+
+{% include 'myapp/header.html' %}
+<div class="container mt-5">
+    <h1 class="mb-4">Delete Event</h1>
+    <p>Are you sure you want to delete "{{ event.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger mt-2">Delete</button>
+    </form>
+    <a href="{% url 'event_list' %}" class="btn btn-secondary mt-2">Cancel</a>
+</div>
+{% endblock %}

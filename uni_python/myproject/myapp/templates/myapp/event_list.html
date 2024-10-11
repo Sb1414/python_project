@@ -1,0 +1,25 @@
+{% extends 'myapp/layout.html' %}
+{% load static %}
+{% block title %}
+Event List
+{% endblock %}
+
+{% block body %}
+
+{% include 'myapp/header.html' %}
+<div class="container mt-5">
+    <h1 class="mb-4">Event List</h1>
+    <a href="{% url 'add_event' %}" class="btn btn-primary mb-4">Add Event</a>
+    <ul class="list-group mt-4">
+        {% for event in events %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ event.name }} - {{ event.description }} - {{ event.date }} - {{ event.time }} - {{ event.attraction.name }}
+            <div>
+                <a href="{% url 'edit_event' event.pk %}" class="btn btn-warning btn-sm mr-2">Edit</a>
+                <a href="{% url 'delete_event' event.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
