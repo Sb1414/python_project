@@ -10,16 +10,38 @@ Category List
 <div class="container mt-5">
     <h1 class="mb-4">Category List</h1>
     <a href="{% url 'add_category' %}" class="btn btn-primary mb-4">Add Category</a>
-    <ul class="list-group mt-4">
-        {% for category in categories %}
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            {{ category.name }} - {{ category.description }}
-            <div>
-                <a href="{% url 'edit_category' category.pk %}" class="btn btn-warning btn-sm mr-2">Edit</a>
-                <a href="{% url 'delete_category' category.pk %}" class="btn btn-danger btn-sm">Delete</a>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th><a href="?sort_by=name" class="text-black">Название</a></th>
+                <th><a href="?sort_by=description" class="text-black">Описание</a></th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+            <tr>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td>
+                    <a href="{% url 'edit_category' category.pk %}" class="btn btn-warning btn-sm mr-2">Edit</a>
+                    <a href="{% url 'delete_category' category.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .text-black {
+        color: black;
+        text-decoration: none;
+    }
+    .text-black:hover {
+        text-decoration: underline;
+    }
+</style>
 {% endblock %}

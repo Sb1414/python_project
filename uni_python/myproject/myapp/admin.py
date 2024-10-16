@@ -11,9 +11,9 @@ class AttractionAdmin(admin.ModelAdmin):
     list_filter = ('category',)
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'date', 'time', 'attraction', 'created_at')
+    list_display = ('name', 'description', 'date', 'time', 'attraction', 'created_at', 'is_active')
     search_fields = ('name', 'attraction__name')
-    list_filter = ('date', 'attraction')
+    list_filter = ('date', 'attraction', 'is_active')
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Attraction, AttractionAdmin)

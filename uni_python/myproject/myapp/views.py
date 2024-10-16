@@ -20,9 +20,13 @@ def info(request):
     return render(request, 'myapp/info.html', {'github_data': github_data})
 
 def attraction_list(request):
-    attractions = Attraction.objects.all()
+    sort_by = request.GET.get('sort_by', 'name')
+    if sort_by not in ['name', 'description', 'price', 'category']:
+        sort_by = 'name'
+
+    attractions = Attraction.objects.all().order_by(sort_by)
     form = AttractionForm()
-    return render(request, 'myapp/attraction_list.html', {'attractions': attractions, 'form': form})
+    return render(request, 'myapp/attraction_list.html', {'attractions': attractions, 'form': form, 'sort_by': sort_by})
 
 def add_attraction(request):
     if request.method == 'POST':
@@ -53,9 +57,13 @@ def delete_attraction(request, pk):
     return render(request, 'myapp/delete_attraction.html', {'attraction': attraction})
 
 def category_list(request):
-    categories = Category.objects.all()
+    sort_by = request.GET.get('sort_by', 'name')
+    if sort_by not in ['name', 'description']:
+        sort_by = 'name'
+
+    categories = Category.objects.all().order_by(sort_by)
     form = CategoryForm()
-    return render(request, 'myapp/category_list.html', {'categories': categories, 'form': form})
+    return render(request, 'myapp/category_list.html', {'categories': categories, 'form': form, 'sort_by': sort_by})
 
 def add_category(request):
     if request.method == 'POST':
@@ -86,9 +94,14 @@ def delete_category(request, pk):
     return render(request, 'myapp/delete_category.html', {'category': category})
 
 def event_list(request):
-    events = Event.objects.all()
+    sort_by = request.GET.get('sort_by', 'name')
+    if sort_by not in ['name', 'description', 'date', 'time', 'attraction']:
+        sort_by = 'name'
+
+    events = Event.objects.filter(is_active=True).order_by(sort_by)
     form = EventForm()
-    return render(request, 'myapp/event_list.html', {'events': events, 'form': form})
+    return render(request, 'myapp/event_list.html', {'events': events, 'form': form, 'sort_by': sort_by})
+
 
 def add_event(request):
     if request.method == 'POST':
