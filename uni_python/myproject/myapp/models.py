@@ -19,8 +19,8 @@ class Attraction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     class Meta:
-        verbose_name = 'Достопримечательность'
-        verbose_name_plural = 'Достопримечательности'
+        verbose_name = 'Аттракцион'
+        verbose_name_plural = 'Аттракционы'
 
     def __str__(self):
         return self.name
