@@ -30,7 +30,7 @@ def attraction_list(request):
 
 def add_attraction(request):
     if request.method == 'POST':
-        form = AttractionForm(request.POST)
+        form = AttractionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('attraction_list')
@@ -41,7 +41,7 @@ def add_attraction(request):
 def edit_attraction(request, pk):
     attraction = get_object_or_404(Attraction, pk=pk)
     if request.method == 'POST':
-        form = AttractionForm(request.POST, instance=attraction)
+        form = AttractionForm(request.POST, request.FILES, instance=attraction)
         if form.is_valid():
             form.save()
             return redirect('attraction_list')
@@ -101,7 +101,6 @@ def event_list(request):
     events = Event.objects.filter(is_active=True).order_by(sort_by)
     form = EventForm()
     return render(request, 'myapp/event_list.html', {'events': events, 'form': form, 'sort_by': sort_by})
-
 
 def add_event(request):
     if request.method == 'POST':

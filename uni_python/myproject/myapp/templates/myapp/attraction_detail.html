@@ -9,6 +9,9 @@ Attraction Detail
 {% include 'myapp/header.html' %}
 <div class="container mt-5">
     <h1 class="mb-4">{{ attraction.name }}</h1>
+    {% if attraction.photo %}
+    <img src="{{ attraction.photo.url }}" class="img-fluid mb-4" alt="{{ attraction.name }}">
+    {% endif %}
     <p><strong>Описание:</strong> {{ attraction.description }}</p>
     <p><strong>Цена:</strong> ${{ attraction.price }}</p>
     <p><strong>Категория:</strong> {{ attraction.category.name }}</p>

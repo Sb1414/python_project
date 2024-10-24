@@ -10,31 +10,25 @@ Attraction List
 <div class="container mt-5">
     <h1 class="mb-4">Аттракционы</h1>
     <a href="{% url 'add_attraction' %}" class="btn btn-primary mb-4">Add Attraction</a>
-    <table class="table table-striped mt-4">
-        <thead>
-            <tr>
-                <th><a href="?sort_by=name" class="text-black">Название</a></th>
-                <th><a href="?sort_by=description" class="text-black">Описание</a></th>
-                <th><a href="?sort_by=price" class="text-black">Цена</a></th>
-                <th><a href="?sort_by=category" class="text-black">Категория</a></th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for attraction in attractions %}
-            <tr>
-                <td><a href="{% url 'attraction_detail' attraction.pk %}" class="text-black">{{ attraction.name }}</a></td>
-                <td>{{ attraction.description }}</td>
-                <td>${{ attraction.price }}</td>
-                <td>{{ attraction.category.name }}</td>
-                <td>
+    <div class="row">
+        {% for attraction in attractions %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if attraction.photo %}
+                <img src="{{ attraction.photo.url }}" class="card-img-top" alt="{{ attraction.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'attraction_detail' attraction.pk %}" class="text-black">{{ attraction.name }}</a></h5>
+                    <p class="card-text">{{ attraction.description }}</p>
+                    <p class="card-text">Цена: ${{ attraction.price }}</p>
+                    <p class="card-text">Категория: {{ attraction.category.name }}</p>
                     <a href="{% url 'edit_attraction' attraction.pk %}" class="btn btn-warning btn-sm mr-2">Edit</a>
                     <a href="{% url 'delete_attraction' attraction.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 
@@ -46,6 +40,10 @@ Attraction List
     }
     .text-black:hover {
         text-decoration: underline;
+    }
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
     }
 </style>
 {% endblock %}

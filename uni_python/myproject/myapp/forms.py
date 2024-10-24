@@ -5,12 +5,13 @@ from .models import Attraction, Category, Event
 class AttractionForm(forms.ModelForm):
     class Meta:
         model = Attraction
-        fields = ['name', 'description', 'price', 'category']
+        fields = ['name', 'description', 'price', 'category', 'photo']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
+            'photo': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 class CategoryForm(forms.ModelForm):
