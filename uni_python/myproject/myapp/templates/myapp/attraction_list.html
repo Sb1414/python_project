@@ -23,7 +23,7 @@ Attraction List
         <tbody>
             {% for attraction in attractions %}
             <tr>
-                <td>{{ attraction.name }}</td>
+                <td><a href="{% url 'attraction_detail' attraction.pk %}" class="text-black">{{ attraction.name }}</a></td>
                 <td>{{ attraction.description }}</td>
                 <td>${{ attraction.price }}</td>
                 <td>{{ attraction.category.name }}</td>

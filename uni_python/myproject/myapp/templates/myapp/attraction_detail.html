@@ -1,0 +1,18 @@
+{% extends 'myapp/layout.html' %}
+{% load static %}
+{% block title %}
+Attraction Detail
+{% endblock %}
+
+{% block body %}
+
+{% include 'myapp/header.html' %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ attraction.name }}</h1>
+    <p><strong>Описание:</strong> {{ attraction.description }}</p>
+    <p><strong>Цена:</strong> ${{ attraction.price }}</p>
+    <p><strong>Категория:</strong> {{ attraction.category.name }}</p>
+    <p><strong>Создано:</strong> {{ attraction.created_at }}</p>
+    <a href="{% url 'attraction_list' %}" class="btn btn-primary mt-4">Назад</a>
+</div>
+{% endblock %}

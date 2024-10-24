@@ -130,3 +130,15 @@ def delete_event(request, pk):
         event.delete()
         return redirect('event_list')
     return render(request, 'myapp/delete_event.html', {'event': event})
+
+def attraction_detail(request, pk):
+    attraction = get_object_or_404(Attraction, pk=pk)
+    return render(request, 'myapp/attraction_detail.html', {'attraction': attraction})
+
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    return render(request, 'myapp/category_detail.html', {'category': category})
+
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, 'myapp/event_detail.html', {'event': event})
