@@ -10,11 +10,6 @@ Category Detail
 <div class="container mt-5">
     <h1 class="mb-4">{{ category.name }}</h1>
     <p><strong>Описание:</strong> {{ category.description }}</p>
-    <p><strong>Дата:</strong> {{ category.date }}</p>
-    <p><strong>Время:</strong> {{ event.time }}</p>
-    <p><strong>Аттракцион:</strong> {{ event.attraction.name }}</p>
-    <p><strong>Создано:</strong> {{ event.created_at }}</p>
-    <p><strong>Активно:</strong> {{ event.is_active }}</p>
-    <a href="{% url 'category_list' %}" class="btn btn-primary mt-4">Back to List</a>
+    <a href="{% url 'category_list' %}" class="btn btn-primary mt-4">Назад</a>
 </div>
 {% endblock %}
