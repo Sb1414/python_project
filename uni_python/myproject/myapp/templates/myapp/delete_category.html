@@ -9,11 +9,11 @@ Delete Category
 {% include 'myapp/header.html' %}
 <div class="container mt-5">
     <h1 class="mb-4">Delete Category</h1>
-    <p>Are you sure you want to delete "{{ category.name }}"?</p>
+    <p>Вы уверены что хотите удалить  "{{ category.name }}" ?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger mt-2">Delete</button>
+        <button type="submit" class="btn btn-danger mt-2">Удалить</button>
     </form>
-    <a href="{% url 'category_list' %}" class="btn btn-secondary mt-2">Cancel</a>
+    <a href="{% url 'category_list' %}" class="btn btn-secondary mt-2">Отмена</a>
 </div>
 {% endblock %}
