@@ -1,8 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
@@ -19,6 +26,7 @@ nav a {
 }
 
 main {
+    flex: 1;
     padding: 2em;
     text-align: center;
 }
@@ -28,15 +36,21 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1em 0;
-    position: fixed;
     width: 100%;
-    bottom: 0;
+    margin-top: auto;
 }
 
 img {
     object-fit: contain;
     max-height: 100%;
     max-width: 100%;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .card-group {
